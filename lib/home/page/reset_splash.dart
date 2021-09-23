@@ -1,15 +1,15 @@
 import 'package:fire_safety/shared/routes.dart';
 import 'package:flutter/material.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key key}) : super(key: key);
+class ResetSplashPage extends StatefulWidget {
+  const ResetSplashPage({Key key}) : super(key: key);
 
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  _ResetSplashPageState createState() => _ResetSplashPageState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
-  TextEditingController emailController = TextEditingController();
+class _ResetSplashPageState extends State<ResetSplashPage> {
+  TextEditingController resetController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +35,15 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               SizedBox(height: 4),
               Text(
-                'Please enter registered mobile no. or email',
+                'Please enter 4 digit OTP sent to you',
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               SizedBox(height: 16),
               TextFormField(
-                controller: emailController,
+                controller: resetController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  hintText: 'Mobile no./Email',
+                  hintText: 'Please enter OTP',
                   hintStyle: TextStyle(fontSize: 22, color: Colors.white38),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
@@ -60,7 +60,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     padding: const EdgeInsets.only(bottom: 4),
                     child: OutlinedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, Routes.RESETSPLASH_PAGE);
+                        Navigator.pushNamed(context, Routes.NEWPASSWORD_PAGE);
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(

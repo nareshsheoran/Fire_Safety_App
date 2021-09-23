@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       initialRoute: Routes.LOGIN_PAGE,
       routes: routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:fire_safety/auth/model/sign_up_request.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key key}) : super(key: key);
@@ -86,7 +91,9 @@ class _SignupPageState extends State<SignupPage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        await signUp();
+                      },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 8),
@@ -110,5 +117,43 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
     );
+  }
+
+  Future signUp() async {
+    String name = nameController.text;
+    String mob = mailController.text;
+    String password = passwordController.text;
+
+    if (name.isEmpty) {
+      Fluttertoast.showToast(msg: "Please input name");
+      return;
+    }
+    if (mob.isEmpty) {
+      Fluttertoast.showToast(msg: "Please input mobile");
+      return;
+    }
+    if (password.isEmpty) {
+      Fluttertoast.showToast(msg: "Please input password");
+      return;
+    }
+
+    SignUpRequest request = SignUpRequest(
+        name: name, mobile: mob, password: password, otp: "123456");
+
+    var url = Uri.parse(
+        'https://firesafetyhanumangarh.in/RestApi/user_api/student_register');
+    var response = await http.post(url, body: request.toJson());
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    Map<String, dynamic> map =
+        jsonDecode(response.body) as Map<String, dynamic>;
+    if (map != null && map['message'] != null) {
+      Fluttertoast.showToast(msg: map['message']);
+
+      if (response.statusCode == 200 &&
+          map['message'] == "Registered Successfully") {
+        Navigator.pop(context);
+      }
+    }
   }
 }

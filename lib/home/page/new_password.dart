@@ -1,15 +1,14 @@
-import 'package:fire_safety/shared/routes.dart';
 import 'package:flutter/material.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key key}) : super(key: key);
+class NewPasswordPage extends StatefulWidget {
+  const NewPasswordPage({Key key}) : super(key: key);
 
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  _NewPasswordPageState createState() => _NewPasswordPageState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
-  TextEditingController emailController = TextEditingController();
+class _NewPasswordPageState extends State<NewPasswordPage> {
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +34,15 @@ class _ResetPasswordState extends State<ResetPassword> {
               ),
               SizedBox(height: 4),
               Text(
-                'Please enter registered mobile no. or email',
+                'Please enter a strong desired password',
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               SizedBox(height: 16),
               TextFormField(
-                controller: emailController,
+                controller: passwordController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  hintText: 'Mobile no./Email',
+                  hintText: 'Create new password',
                   hintStyle: TextStyle(fontSize: 22, color: Colors.white38),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white),
@@ -59,14 +58,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4),
                     child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.RESETSPLASH_PAGE);
-                      },
+                      onPressed: () {},
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 8),
                         child: Text(
-                          'Continue',
+                          'Save',
                           style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'MyriadPro',

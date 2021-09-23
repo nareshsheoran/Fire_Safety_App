@@ -54,7 +54,9 @@ class _LoginPageState extends State<LoginPage> {
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: Colors.black, width: 1.2),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.SIGNUP_PAGE);
+                    },
                     child: Text(
                       'Signup',
                       style: TextStyle(color: Colors.black, fontSize: 18),
