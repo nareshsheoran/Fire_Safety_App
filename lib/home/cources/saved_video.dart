@@ -140,6 +140,15 @@ Widget newList(String name, String time, String id, String date) {
                     ),
                   ],
                 ),
+                Row(
+                  children: [
+                    Text(
+                      name,
+                      maxLines: 2,
+                      style: TextStyle(fontSize: 12, color: Colors.black),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

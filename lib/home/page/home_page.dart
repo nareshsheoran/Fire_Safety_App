@@ -9,6 +9,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController mailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +55,11 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pushNamed(context, Routes.STUDYMATERIALS_PAGE);
                 },
                 child: newList('Study Materials')),
-            newList('Download Certificates'),
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.CERTIFICATE_PAGE);
+                },
+                child: newList('Download Certificates')),
           ],
         ),
       ),

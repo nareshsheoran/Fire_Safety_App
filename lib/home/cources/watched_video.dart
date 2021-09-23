@@ -54,7 +54,7 @@ class _WatchedVideopageState extends State<WatchedVideopage> {
         child: ListView.builder(
             itemCount: videoList.length,
             itemBuilder: (ctx, index) {
-              return newList(videoList[index].name);
+              return newList(videoList[index].name, videoList[index].date);
             }),
       ),
       bottomNavigationBar: Container(
@@ -78,7 +78,7 @@ class _WatchedVideopageState extends State<WatchedVideopage> {
   }
 }
 
-Widget newList(String string) {
+Widget newList(String string, String date) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
     child: Container(
@@ -126,9 +126,9 @@ Widget newList(String string) {
                   child: Row(
                     children: [
                       Text(
-                        '00.00',
+                        date,
                         maxLines: 2,
-                        style: TextStyle(fontSize: 15, color: Colors.grey[600]),
+                        style: TextStyle(fontSize: 8, color: Colors.grey[600]),
                       ),
                     ],
                   ),

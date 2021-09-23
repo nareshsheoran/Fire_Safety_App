@@ -47,7 +47,7 @@ class _SplashPageState extends State<SplashPage> {
               SizedBox(height: 16),
               TextFormField(
                 controller: mailController,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: 'Mobile no./Email',
                   hintStyle: TextStyle(fontSize: 22, color: Colors.white38),
@@ -61,7 +61,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
               TextField(
                 controller: passwordController,
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: TextStyle(fontSize: 22, color: Colors.white38),

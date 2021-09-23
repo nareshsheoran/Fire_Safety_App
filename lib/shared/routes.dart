@@ -1,4 +1,5 @@
 import 'package:fire_safety/home/cources/buy_cources.dart';
+import 'package:fire_safety/home/cources/certificate_page.dart';
 import 'package:fire_safety/home/cources/my_cources.dart';
 import 'package:fire_safety/home/cources/saved_video.dart';
 import 'package:fire_safety/home/cources/study_materials.dart';
@@ -25,6 +26,7 @@ class Routes {
   static const String WATCHEDVIDEO_PAGE = '/watchedvideopage';
   static const String BUYCOURSES_PAGE = '/buycoursespage';
   static const String MYCOURSES_PAGE = '/mycoursespage';
+  static const String CERTIFICATE_PAGE = '/certificatepage';
 }
 
 final routes = {
@@ -40,4 +42,5 @@ final routes = {
   Routes.WATCHEDVIDEO_PAGE: (context) => WatchedVideopage(),
   Routes.BUYCOURSES_PAGE: (context) => BuyCourses(),
   Routes.MYCOURSES_PAGE: (context) => MyCourses(),
+  Routes.CERTIFICATE_PAGE: (context) => CertificatePage(),
 };
