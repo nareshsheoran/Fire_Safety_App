@@ -32,7 +32,6 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
   }
 
   VideoPlayerController _controller;
-
   @override
   void initState() {
     getData();
