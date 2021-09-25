@@ -1,25 +1,21 @@
 class CertificateRequest {
-  String name;
+  String roll_no;
   String mobile;
-  String password;
 
   CertificateRequest({
-    this.name,
     this.mobile,
-    this.password,
+    this.roll_no,
   });
 
   CertificateRequest.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
     mobile = json['mobile'];
-    password = json['password'];
+    roll_no = json['roll_no'];
   }
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = Map();
-    map['name'] = name;
+    map['roll_no'] = roll_no;
     map['mobile'] = mobile;
-    map['password'] = password;
     return map;
   }
 }

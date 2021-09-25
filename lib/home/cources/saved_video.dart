@@ -14,7 +14,6 @@ class SavedVideoPage extends StatefulWidget {
 
 class _SavedVideoPageState extends State<SavedVideoPage> {
   List<Video_Model> videoList = [];
-  VideoPlayerController _controller;
 
   Future getData() async {
     videoList.clear();
@@ -32,10 +31,18 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
     }
   }
 
+  VideoPlayerController _controller;
+
   @override
   void initState() {
     getData();
+
     super.initState();
+    _controller = VideoPlayerController.network(
+        'https://firesafetyhanumangarh.in/admin/assets/video/VID-20201025-WA00071630742590.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+      });
   }
 
   Widget build(BuildContext context) {
@@ -82,6 +89,12 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
             ],
           )),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }
 
