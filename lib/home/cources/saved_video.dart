@@ -15,6 +15,8 @@ class SavedVideoPage extends StatefulWidget {
 class _SavedVideoPageState extends State<SavedVideoPage> {
   List<Video_Model> videoList = [];
 
+  get floatingActionButton => null;
+
   Future getData() async {
     videoList.clear();
     Uri myUri = Uri.parse(
@@ -71,22 +73,83 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
             }),
       ),
       bottomNavigationBar: Container(
-          height: 80,
-          color: Colors.red,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.home,
-                size: 40,
-                color: Colors.grey,
+        height: 80,
+        color: Colors.red,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.home,
+              size: 40,
+              color: Colors.grey,
+            ),
+            Text(
+              'Home',
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget newList(String name, String time, String id, String date) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Container(
+        height: 100,
+        child: Row(
+          children: [
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _controller.value.isPlaying
+                      ? _controller.pause()
+                      : _controller.play();
+                });
+              },
+              child: Container(
+                width: 160,
+                color: Colors.red,
+                child: _controller.value.initialized
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(
+                          _controller,
+                        ),
+                      )
+                    : Container(),
               ),
-              Text(
-                'Home',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              )
-            ],
-          )),
+            ),
+            SizedBox(width: 12),
+            Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        id,
+                        maxLines: 2,
+                        style: TextStyle(fontSize: 12, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        name,
+                        maxLines: 2,
+                        style: TextStyle(fontSize: 12, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -95,77 +158,4 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
     super.dispose();
     _controller.dispose();
   }
-}
-
-Widget newList(String name, String time, String id, String date) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-    child: Container(
-      height: 100,
-      child: Row(
-        children: [
-          Container(
-            width: 162,
-            color: Colors.red,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Icon(Icons.bookmark_sharp)],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Icon(Icons.slow_motion_video_rounded)],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "00:00",
-                        maxLines: 2,
-                        style: TextStyle(fontSize: 15, color: Colors.black),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(width: 12),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      id,
-                      maxLines: 2,
-                      style: TextStyle(fontSize: 12, color: Colors.black),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      name,
-                      maxLines: 2,
-                      style: TextStyle(fontSize: 12, color: Colors.black),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
 }

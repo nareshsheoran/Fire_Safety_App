@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:fire_safety/api_details/saved_api.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:video_player/video_player.dart';
 
 class WatchedVideopage extends StatefulWidget {
   const WatchedVideopage({Key key}) : super(key: key);
@@ -14,6 +14,8 @@ class WatchedVideopage extends StatefulWidget {
 
 class _WatchedVideopageState extends State<WatchedVideopage> {
   List<Video_Model> videoList = [];
+
+  bool isFetchingData = false;
 
   Future getData() async {
     videoList.clear();
@@ -34,10 +36,10 @@ class _WatchedVideopageState extends State<WatchedVideopage> {
   @override
   void initState() {
     getData();
+
     super.initState();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +56,8 @@ class _WatchedVideopageState extends State<WatchedVideopage> {
         child: ListView.builder(
             itemCount: videoList.length,
             itemBuilder: (ctx, index) {
-              return newList(videoList[index].name, videoList[index].date);
+              return newList(videoList[index].name, videoList[index].date,
+                  videoList[index].video);
             }),
       ),
       bottomNavigationBar: Container(
@@ -76,68 +79,96 @@ class _WatchedVideopageState extends State<WatchedVideopage> {
           )),
     );
   }
-}
 
-Widget newList(String string, String date) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-    child: Container(
-      height: 120,
-      child: Row(
-        children: [
-          Container(
-            width: 162,
-            color: Colors.red,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+  Widget newList(String string, String date, String url) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Container(
+        height: 100,
+        child: Row(
+          children: [
+            isFetchingData
+                ? Center(child: CircularProgressIndicator())
+                : VdoPlayerWidget(
+                    "https://firesafetyhanumangarh.in/admin/$url"),
+            SizedBox(width: 12),
+            Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Icon(Icons.slow_motion_video_rounded)],
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [Text('time')],
-                  ),
-                  SizedBox(height: 8),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(width: 12),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      string,
-                      maxLines: 2,
-                      style: TextStyle(fontSize: 15, color: Colors.black),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Row(
                     children: [
                       Text(
-                        date,
+                        string,
                         maxLines: 2,
-                        style: TextStyle(fontSize: 8, color: Colors.grey[600]),
+                        style: TextStyle(fontSize: 15, color: Colors.black),
                       ),
                     ],
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          date,
+                          maxLines: 2,
+                          style:
+                              TextStyle(fontSize: 8, color: Colors.grey[600]),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    //  _controller.dispose();
+  }
+}
+
+class VdoPlayerWidget extends StatefulWidget {
+  final String url;
+
+  const VdoPlayerWidget(this.url);
+
+  @override
+  _VdoPlayerWidgetState createState() => _VdoPlayerWidgetState();
+}
+
+class _VdoPlayerWidgetState extends State<VdoPlayerWidget> {
+  VideoPlayerController controller;
+
+  @override
+  void initState() {
+    controller = VideoPlayerController.network(widget.url)
+      ..initialize().then((_) {
+        setState(() {});
+      });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        controller.value.isPlaying ? controller.pause() : controller.play();
+      },
+      child: Container(
+        width: 160,
+        child: controller.value.initialized
+            ? AspectRatio(
+                aspectRatio: controller.value.aspectRatio,
+                child: VideoPlayer(controller),
+              )
+            : Container(),
+      ),
+    );
+  }
 }
