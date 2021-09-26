@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:video_player/video_player.dart';
 
-class SavedVideoPage extends StatefulWidget {
-  const SavedVideoPage({Key key}) : super(key: key);
+class SavedVideopage extends StatefulWidget {
+  const SavedVideopage({Key key}) : super(key: key);
 
   @override
-  _SavedVideoPageState createState() => _SavedVideoPageState();
+  _SavedVideopageState createState() => _SavedVideopageState();
 }
 
-class _SavedVideoPageState extends State<SavedVideoPage> {
+class _SavedVideopageState extends State<SavedVideopage> {
   List<Video_Model> videoList = [];
 
-  get floatingActionButton => null;
+  bool isFetchingData = false;
 
   Future getData() async {
     videoList.clear();
@@ -33,24 +33,18 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
     }
   }
 
-  VideoPlayerController _controller;
   @override
   void initState() {
     getData();
 
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://firesafetyhanumangarh.in/admin/assets/video/VID-20201025-WA00071630742590.mp4')
-      ..initialize().then((_) {
-        setState(() {});
-      });
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text('Saved Video'),
+        title: Text('Saved Videos'),
         centerTitle: true,
       ),
       drawer: DrawerHeader(),
@@ -62,65 +56,41 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
         child: ListView.builder(
             itemCount: videoList.length,
             itemBuilder: (ctx, index) {
-              return Container(
-                child: newList(
-                  videoList[index].id,
-                  videoList[index].video,
-                  videoList[index].name,
-                  videoList[index].date,
-                ),
-              );
+              return newList(videoList[index].id, videoList[index].date,
+                  videoList[index].video, videoList[index].name);
             }),
       ),
       bottomNavigationBar: Container(
-        height: 80,
-        color: Colors.red,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.home,
-              size: 40,
-              color: Colors.grey,
-            ),
-            Text(
-              'Home',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
-            )
-          ],
-        ),
-      ),
+          height: 80,
+          color: Colors.red,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.home,
+                size: 40,
+                color: Colors.grey,
+              ),
+              Text(
+                'Home',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              )
+            ],
+          )),
     );
   }
 
-  Widget newList(String name, String time, String id, String date) {
+  Widget newList(String id, String date, String url, String name) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Container(
         height: 100,
         child: Row(
           children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  _controller.value.isPlaying
-                      ? _controller.pause()
-                      : _controller.play();
-                });
-              },
-              child: Container(
-                width: 160,
-                color: Colors.red,
-                child: _controller.value.initialized
-                    ? AspectRatio(
-                        aspectRatio: _controller.value.aspectRatio,
-                        child: VideoPlayer(
-                          _controller,
-                        ),
-                      )
-                    : Container(),
-              ),
-            ),
+            isFetchingData
+                ? Center(child: CircularProgressIndicator())
+                : VdoPlayerWidget(
+                    "https://firesafetyhanumangarh.in/admin/$url"),
             SizedBox(width: 12),
             Container(
               child: Column(
@@ -131,18 +101,21 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
                       Text(
                         id,
                         maxLines: 2,
-                        style: TextStyle(fontSize: 12, color: Colors.black),
+                        style: TextStyle(fontSize: 15, color: Colors.black),
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        name,
-                        maxLines: 2,
-                        style: TextStyle(fontSize: 12, color: Colors.black),
-                      ),
-                    ],
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          name,
+                          maxLines: 2,
+                          style:
+                              TextStyle(fontSize: 16, color: Colors.grey[600]),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -156,6 +129,46 @@ class _SavedVideoPageState extends State<SavedVideoPage> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    //  _controller.dispose();
+  }
+}
+
+class VdoPlayerWidget extends StatefulWidget {
+  final String url;
+
+  const VdoPlayerWidget(this.url);
+
+  @override
+  _VdoPlayerWidgetState createState() => _VdoPlayerWidgetState();
+}
+
+class _VdoPlayerWidgetState extends State<VdoPlayerWidget> {
+  VideoPlayerController controller;
+
+  @override
+  void initState() {
+    controller = VideoPlayerController.network(widget.url)
+      ..initialize().then((_) {
+        setState(() {});
+      });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        controller.value.isPlaying ? controller.pause() : controller.play();
+      },
+      child: Container(
+        width: 160,
+        child: controller.value.initialized
+            ? AspectRatio(
+                aspectRatio: controller.value.aspectRatio,
+                child: VideoPlayer(controller),
+              )
+            : Container(),
+      ),
+    );
   }
 }

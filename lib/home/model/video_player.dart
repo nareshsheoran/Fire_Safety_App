@@ -10,7 +10,6 @@ class VideoPlayer extends StatefulWidget {
 
 class _VideoPlayerState extends State<VideoPlayer> {
   VideoPlayerController _controller;
-
   @override
   Widget build(BuildContext context) {
     return Container();

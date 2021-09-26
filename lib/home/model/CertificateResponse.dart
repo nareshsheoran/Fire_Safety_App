@@ -1,7 +1,6 @@
 class CertificateResponse {
   // ignore: non_constant_identifier_names
   String certificate_url;
-
   // ignore: non_constant_identifier_names
   String certificate_date;
 
