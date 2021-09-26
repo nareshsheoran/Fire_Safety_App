@@ -61,7 +61,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
               TextField(
                 controller: passwordController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: TextStyle(fontSize: 22, color: Colors.white38),
