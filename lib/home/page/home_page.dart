@@ -1,3 +1,4 @@
+import 'package:fire_safety/auth/model/payment_page.dart';
 import 'package:fire_safety/shared/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assests/image/whitebg.jpg'),
+                image: AssetImage('assets/image/whitebg.jpg'),
                 fit: BoxFit.fill)),
         child: ListView(
           children: [
@@ -69,10 +70,16 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.home,
-                size: 40,
-                color: Colors.grey,
+              InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PaymentPage()));
+                },
+                child: Icon(
+                  Icons.home,
+                  size: 40,
+                  color: Colors.grey,
+                ),
               ),
               Text(
                 'Home',

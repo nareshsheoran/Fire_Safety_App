@@ -50,7 +50,7 @@ class _MyCoursesState extends State<MyCourses> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assests/image/bgwhite.jpg'), fit: BoxFit.fill),
+              image: AssetImage('assets/image/bgwhite.jpg'), fit: BoxFit.fill),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 32),

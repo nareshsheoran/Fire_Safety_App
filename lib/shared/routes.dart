@@ -1,3 +1,4 @@
+import 'package:fire_safety/auth/model/payment_page.dart';
 import 'package:fire_safety/auth/page/front_page.dart';
 import 'package:fire_safety/home/cources/buy_cources.dart';
 import 'package:fire_safety/home/cources/certificate_page.dart';
@@ -31,6 +32,7 @@ class Routes {
   static const String MYCOURSES_PAGE = '/mycoursespage';
   static const String CERTIFICATE_PAGE = '/certificatepage';
   static const String PDF_PREVIEW = '/PdfPreviewer';
+  static const String PAYMENT_PAGE = '/paymentpage';
 }
 
 final routes = {
@@ -49,4 +51,5 @@ final routes = {
   Routes.MYCOURSES_PAGE: (context) => MyCourses(),
   Routes.CERTIFICATE_PAGE: (context) => CertificatePage(),
   Routes.PDF_PREVIEW: (context) => PdfPreviewer(),
+  Routes.PAYMENT_PAGE: (context) => PaymentPage(),
 };

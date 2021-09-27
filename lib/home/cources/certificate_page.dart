@@ -136,7 +136,7 @@ class _CertificatePageState extends State<CertificatePage> {
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('assests/image/bgwhite.jpg'),
+                    image: AssetImage('assets/image/bgwhite.jpg'),
                     fit: BoxFit.fill),
               ),
               child: Padding(

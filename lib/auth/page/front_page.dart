@@ -40,7 +40,7 @@ class _FrontPageState extends State<FrontPage> {
                     width: 200,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assests/image/bgwhite.jpg'),
+                            image: AssetImage('assets/image/bgwhite.jpg'),
                             fit: BoxFit.fill),
                         shape: BoxShape.circle),
                   ),

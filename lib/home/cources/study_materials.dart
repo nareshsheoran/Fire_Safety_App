@@ -20,7 +20,7 @@ class _StudyMaterialsPageState extends State<StudyMaterialsPage> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assests/image/bgwhite.jpg'),
+                image: AssetImage('assets/image/bgwhite.jpg'),
                 fit: BoxFit.fill)),
         child: ListView(
           children: [

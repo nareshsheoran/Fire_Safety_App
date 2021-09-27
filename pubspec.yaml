@@ -28,6 +28,7 @@ dependencies:
   path_provider: 1.6.28
   advance_pdf_viewer: any
   video_player: ^1.0.1
+  pay: ^1.0.5
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -51,7 +52,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assests/image/
+    - assets/image/
+    - assets/payment/card.jpg
+    - assets/payment/googlepay.jpg
+    - assets/payment/netbanking.png
+    - assets/payment/Paytm.png
+    - assets/payment/phonepay.jpg
+    - assets/payment/upi.png
+    - assets/gpay.json
+    - assets/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -68,9 +78,9 @@ flutter:
   fonts:
     - family: MyriadPro
       fonts:
-        - asset: assests/fonts/MyriadPro-Light.otf
-        - asset: assests/fonts/MyriadPro-Regular.otf
-        - asset: assests/fonts/MyriadPro-Semibold.otf
+        - asset: assets/fonts/MyriadPro-Light.otf
+        - asset: assets/fonts/MyriadPro-Regular.otf
+        - asset: assets/fonts/MyriadPro-Semibold.otf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

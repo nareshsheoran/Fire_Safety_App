@@ -17,7 +17,7 @@ class _ResetSplashPageState extends State<ResetSplashPage> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assests/image/Background.jpg'),
+                image: AssetImage('assets/image/Background.jpg'),
                 fit: BoxFit.fill)),
         child: Padding(
           padding: const EdgeInsets.all(36.0),
