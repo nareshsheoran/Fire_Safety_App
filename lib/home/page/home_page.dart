@@ -1,4 +1,4 @@
-import 'package:fire_safety/auth/model/payment_page.dart';
+import 'package:fire_safety/home/page/pay_options.dart';
 import 'package:fire_safety/shared/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               InkWell(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PaymentPage()));
+                      MaterialPageRoute(builder: (context) => PayOptions()));
                 },
                 child: Icon(
                   Icons.home,
