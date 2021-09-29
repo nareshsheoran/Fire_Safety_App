@@ -14,6 +14,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  bool showPassword = true;
   TextEditingController mailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -60,9 +61,16 @@ class _SplashPageState extends State<SplashPage> {
                 height: 24,
               ),
               TextField(
+                obscureText: showPassword,
                 controller: passwordController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.remove_red_eye),
+                    onPressed: () =>
+                        setState(() => showPassword = !showPassword),
+                    color: Colors.white,
+                  ),
                   hintText: 'Password',
                   hintStyle: TextStyle(fontSize: 22, color: Colors.white38),
                   enabledBorder: UnderlineInputBorder(
@@ -139,7 +147,7 @@ class _SplashPageState extends State<SplashPage> {
     print('Response body: ${response.body}');
 
     Map<String, dynamic> map =
-        jsonDecode(response.body) as Map<String, dynamic>;
+    jsonDecode(response.body) as Map<String, dynamic>;
 
     if (map != null && map['message'] != null) {
       Fluttertoast.showToast(msg: map['message']);

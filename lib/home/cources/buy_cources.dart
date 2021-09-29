@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fire_safety/api_details/course_api.dart';
+import 'package:fire_safety/shared/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -70,7 +71,8 @@ class _BuyCoursesState extends State<BuyCourses> {
                   ),
                   child: Container(
                     decoration: BoxDecoration(color: Colors.red),
-                    child: CourseList(
+                    child: courseList(
+                        context,
                         courseModelList[index].id,
                         courseModelList[index].courseName,
                         courseModelList[index].studyMaterial,
@@ -87,8 +89,8 @@ class _BuyCoursesState extends State<BuyCourses> {
   }
 }
 
-Widget CourseList(String id, String courseName, String studyMaterial,
-    String duration, String date) {
+Widget courseList(BuildContext context, String id, String courseName,
+    String studyMaterial, String duration, String date) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -121,7 +123,9 @@ Widget CourseList(String id, String courseName, String studyMaterial,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.PAYMENT_PAGE);
+                },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(

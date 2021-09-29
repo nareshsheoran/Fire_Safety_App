@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:fire_safety/api_details/course_api.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:http/http.dart';
 
 class StudyMaterialsPage extends StatefulWidget {
   const StudyMaterialsPage({Key key}) : super(key: key);
@@ -8,6 +13,31 @@ class StudyMaterialsPage extends StatefulWidget {
 }
 
 class _StudyMaterialsPageState extends State<StudyMaterialsPage> {
+  ScrollController scrollController = ScrollController();
+  List<BuyCoursesModel> materialModelList = [];
+
+  Future getData() async {
+    materialModelList.clear();
+    Uri myUri = Uri.parse(
+        'https://firesafetyhanumangarh.in/RestApi/user_api/course_list');
+    Response response = await get(myUri);
+    if (response.statusCode == 200) {
+      final list = jsonDecode(response.body) as List;
+
+      list.forEach((element) {
+        materialModelList.add(BuyCoursesModel.fromJson(element));
+      });
+
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,22 +48,36 @@ class _StudyMaterialsPageState extends State<StudyMaterialsPage> {
       ),
       drawer: DrawerHeader(),
       body: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/image/bgwhite.jpg'),
                 fit: BoxFit.fill)),
-        child: ListView(
-          children: [
-            SizedBox(height: 24),
-            newList('Practical Fire Safety Guidance'),
-            newList('Fire Safety Training'),
-            newList('How to prepare for a fire emergency?'),
-            newList('Knowing evacuation procedures'),
-            newList('What is fire?'),
-            newList('What are the possible causes of fire?'),
-            newList('Know what to do if a fire breaks out'),
-            newList('Fire prevention plan'),
-          ],
+        child: ListView.builder(
+          shrinkWrap: true,
+          controller: scrollController,
+          itemCount: materialModelList.length,
+          itemBuilder: (context, index) {
+            return InkWell(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    decoration: BoxDecoration(color: Colors.red),
+                    child: materialList(
+                        materialModelList[index].id,
+                        materialModelList[index].courseName,
+                        materialModelList[index].studyMaterial,
+                        materialModelList[index].duration,
+                        materialModelList[index].date),
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
       bottomNavigationBar: Container(
@@ -57,33 +101,33 @@ class _StudyMaterialsPageState extends State<StudyMaterialsPage> {
   }
 }
 
-Widget newList(String string) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-    child: Container(
-      height: 48,
-      decoration: BoxDecoration(boxShadow: [], color: Colors.red),
-      child: Row(
-        children: [
-          SizedBox(width: 12),
-          Text(
-            string,
-            style: TextStyle(fontSize: 16, color: Colors.white),
-          ),
-          Expanded(child: Container()),
-          InkWell(
-            child: Container(
-              width: 40,
-              height: 48,
-              color: Colors.black,
-              child: Icon(
-                Icons.arrow_downward_outlined,
-                color: Colors.white,
-              ),
+Widget materialList(String id, String courseName, String studyMaterial,
+    String duration, String date) {
+  return Container(
+    height: 48,
+    decoration: BoxDecoration(boxShadow: [], color: Colors.red),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        SizedBox(width: 12),
+        Text(
+          courseName,
+          style: TextStyle(fontSize: 16, color: Colors.white),
+        ),
+        Expanded(child: Container()),
+        InkWell(
+          child: Container(
+            width: 48,
+            height: 48,
+            color: Colors.black,
+            child: Icon(
+              Icons.arrow_downward_outlined,
+              size: 32,
+              color: Colors.white,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

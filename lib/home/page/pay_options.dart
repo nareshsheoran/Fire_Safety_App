@@ -26,7 +26,10 @@ class _PayOptionsState extends State<PayOptions> {
               ),
               Text(
                 'Choose Payment Method',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightBlue,
+                    fontSize: 20),
               ),
               SizedBox(
                 height: 16,
@@ -46,7 +49,8 @@ class _PayOptionsState extends State<PayOptions> {
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: Colors.green, width: 3)),
+                            border:
+                                Border.all(color: Colors.lightBlue, width: 3)),
                         child: Row(
                           children: [
                             Align(
@@ -55,7 +59,7 @@ class _PayOptionsState extends State<PayOptions> {
                                 'GooglePay',
                                 style: TextStyle(
                                     fontSize: 18,
-                                    color: Colors.red,
+                                    color: Colors.black,
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -88,7 +92,8 @@ class _PayOptionsState extends State<PayOptions> {
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.green, width: 3)),
+                          border:
+                              Border.all(color: Colors.lightBlue, width: 3)),
                       child: Row(
                         children: [
                           Align(
@@ -97,7 +102,7 @@ class _PayOptionsState extends State<PayOptions> {
                               'PhonePay',
                               style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.red,
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -112,7 +117,182 @@ class _PayOptionsState extends State<PayOptions> {
                               padding: EdgeInsets.all(1),
                               child: Image(
                                 image:
-                                    AssetImage('assets/payment/Phonepay.jpg'),
+                                    AssetImage('assets/payment/phonepay.jpg'),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Container(
+                      constraints: BoxConstraints(),
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      height: 55,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border:
+                              Border.all(color: Colors.lightBlue, width: 3)),
+                      child: Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Paytm',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 48,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height,
+                              padding: EdgeInsets.all(1),
+                              child: Image(
+                                image: AssetImage('assets/payment/Paytm.png'),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Container(
+                      constraints: BoxConstraints(),
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      height: 55,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border:
+                              Border.all(color: Colors.lightBlue, width: 3)),
+                      child: Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Credit/\nDebit Card',
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height,
+                              padding: EdgeInsets.all(1),
+                              child: Image(
+                                image: AssetImage('assets/payment/card.jpg'),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Container(
+                      constraints: BoxConstraints(),
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      height: 55,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border:
+                              Border.all(color: Colors.lightBlue, width: 3)),
+                      child: Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'NetBanking',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height,
+                              padding: EdgeInsets.all(1),
+                              child: Image(
+                                image:
+                                    AssetImage('assets/payment/netbanking.png'),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    Container(
+                      constraints: BoxConstraints(),
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      height: 55,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border:
+                              Border.all(color: Colors.lightBlue, width: 3)),
+                      child: Row(
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'UPI',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 56,
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height,
+                              padding: EdgeInsets.all(1),
+                              child: Image(
+                                image: AssetImage('assets/payment/upi.png'),
                               ),
                             ),
                           )

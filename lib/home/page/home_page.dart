@@ -1,4 +1,3 @@
-import 'package:fire_safety/home/page/pay_options.dart';
 import 'package:fire_safety/shared/routes.dart';
 import 'package:flutter/material.dart';
 
@@ -70,16 +69,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PayOptions()));
-                },
-                child: Icon(
-                  Icons.home,
-                  size: 40,
-                  color: Colors.grey,
-                ),
+              Icon(
+                Icons.home,
+                size: 40,
+                color: Colors.grey,
               ),
               Text(
                 'Home',

@@ -58,10 +58,7 @@ class _CertificatePageState extends State<CertificatePage> {
     });
   }
 
-  Widget getCertificateWidget(
-    CertificateResponse response,
-    int index,
-  ) {
+  Widget getCertificateWidget(CertificateResponse response, int index) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(

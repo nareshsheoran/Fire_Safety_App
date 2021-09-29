@@ -3,12 +3,13 @@ import 'package:fire_safety/auth/page/front_page.dart';
 import 'package:fire_safety/home/cources/buy_cources.dart';
 import 'package:fire_safety/home/cources/certificate_page.dart';
 import 'package:fire_safety/home/cources/my_cources.dart';
-import 'package:fire_safety/home/cources/pdf_preview.dart';
 import 'package:fire_safety/home/cources/saved_video.dart';
 import 'package:fire_safety/home/cources/study_materials.dart';
 import 'package:fire_safety/home/cources/watched_video.dart';
+import 'package:fire_safety/home/model/pdf_preview.dart';
 import 'package:fire_safety/home/page/home_page.dart';
 import 'package:fire_safety/home/page/new_password.dart';
+import 'package:fire_safety/home/page/pay_options.dart';
 import 'package:fire_safety/home/page/reset_password.dart';
 import 'package:fire_safety/home/page/reset_splash.dart';
 
@@ -33,6 +34,7 @@ class Routes {
   static const String CERTIFICATE_PAGE = '/certificatepage';
   static const String PDF_PREVIEW = '/PdfPreviewer';
   static const String PAYMENT_PAGE = '/paymentpage';
+  static const String PAY_OPTIONS = '/payoptions';
 }
 
 final routes = {
@@ -52,4 +54,5 @@ final routes = {
   Routes.CERTIFICATE_PAGE: (context) => CertificatePage(),
   Routes.PDF_PREVIEW: (context) => PdfPreviewer(),
   Routes.PAYMENT_PAGE: (context) => PaymentPage(),
+  Routes.PAY_OPTIONS: (context) => PayOptions(),
 };
